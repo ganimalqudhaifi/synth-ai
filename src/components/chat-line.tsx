@@ -7,9 +7,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ChatMessage } from "@/types";
+import Markdown from "react-markdown";
 
 export function ChatLine({ role = "assistant", content }: ChatMessage) {
-  if (!content) {
+  if (!content && content !== "") {
     return null;
   }
 
@@ -27,7 +28,11 @@ export function ChatLine({ role = "assistant", content }: ChatMessage) {
             {role == "assistant" ? "AI" : "You"}
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-sm">{content}</CardContent>
+        <CardContent className="text-sm">
+          <Markdown className="prose prose-sm dark:prose-invert">
+            {content}
+          </Markdown>
+        </CardContent>
         <CardFooter>
           <CardDescription className="w-full"></CardDescription>
         </CardFooter>

@@ -22,6 +22,20 @@ export default function Chat() {
     setMessages((previousMessages) => [...previousMessages, message]);
   };
 
+  const updateLastMessageContent = (newContent: string) => {
+    setMessages((previousMessages) => {
+      const updatedMessages = [...previousMessages];
+      const lastMessageIndex = updatedMessages.length - 1;
+      if (lastMessageIndex >= 0) {
+        updatedMessages[lastMessageIndex] = {
+          ...updatedMessages[lastMessageIndex],
+          content: updatedMessages[lastMessageIndex].content + newContent,
+        };
+      }
+      return updatedMessages;
+    });
+  };
+
   const sendQuestion = async (question: string) => {
     setIsLoading(true);
     updateMessages({ role: "user", content: question });
@@ -29,22 +43,26 @@ export default function Chat() {
     try {
       const response = await fetch("/api/chat", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          question,
-        }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question }),
       });
 
-      if (!response.ok) {
-        throw new Error(`Error: ${response.statusText}`);
+      if (!response.body) return;
+
+      updateMessages({ role: "assistant", content: "" });
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+
+      while (true) {
+        const { done, value } = await reader.read();
+
+        if (done) break;
+
+        const chunk = decoder.decode(value, { stream: true });
+        console.log({ chunk });
+        updateLastMessageContent(chunk);
       }
-
-      const { answer } = await response.json();
-      console.log("jawaban: ", answer);
-
-      updateMessages({ role: "assistant", content: answer });
     } catch (error) {
       console.log("Error occured ", error);
     } finally {
