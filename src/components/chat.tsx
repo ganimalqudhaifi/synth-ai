@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { InputMessage } from "./input-message";
 import { ChatMessage } from "@/types";
 import InitialChatDisplay from "./initial-chat-display";
 import { ChatLine } from "./chat-line";
+import { scrollToBottom } from "@/lib/utils";
 
 const initialMessage: ChatMessage[] = [
   {
@@ -17,6 +18,7 @@ export default function Chat() {
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessage);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
   const updateMessages = (message: ChatMessage) => {
     setMessages((previousMessages) => [...previousMessages, message]);
@@ -34,6 +36,7 @@ export default function Chat() {
       }
       return updatedMessages;
     });
+    setTimeout(() => scrollToBottom(containerRef), 100);
   };
 
   const sendQuestion = async (question: string) => {
@@ -78,7 +81,7 @@ export default function Chat() {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="p-6 flex-grow overflow-auto">
+      <div className="p-6 flex-grow overflow-auto" ref={containerRef}>
         {messages.length <= 0 ? (
           <InitialChatDisplay />
         ) : (
