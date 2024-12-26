@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
+import { Loader2, Send } from "lucide-react";
 
 type InputMessageProps = {
   input: string;
@@ -22,6 +22,7 @@ export function InputMessage({
       <Input
         type="text"
         aria-label="chat input"
+        className="rounded-full"
         required
         placeholder={placeholder}
         value={input}
@@ -37,14 +38,15 @@ export function InputMessage({
       />
       <Button
         type="submit"
+        size="icon"
         disabled={input.length < 2}
-        className="ml-4 flex-none"
+        className="ml-4 flex-none rounded-full"
         onClick={() => {
           sendMessage(input);
           setInput("");
         }}
       >
-        {isLoading ? <Spinner /> : "Ask"}
+        {isLoading ? <Loader2 className="animate-spin" /> : <Send />}
       </Button>
     </div>
   );
