@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@langchain/core": "^0.3.26",
+    "@langchain/langgraph": "^0.2.36",
     "@langchain/openai": "^0.3.16",
     "@radix-ui/react-avatar": "^1.1.2",
     "@radix-ui/react-dialog": "^1.1.4",

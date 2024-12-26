@@ -63,11 +63,10 @@ export default function Chat() {
         if (done) break;
 
         const chunk = decoder.decode(value, { stream: true });
-        console.log({ chunk });
         updateLastMessageContent(chunk);
       }
     } catch (error) {
-      console.log("Error occured ", error);
+      console.error("Error occured ", error);
     } finally {
       setIsLoading(false);
     }
