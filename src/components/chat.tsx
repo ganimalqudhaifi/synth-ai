@@ -15,7 +15,7 @@ const initialMessage: ChatMessage[] = [
 ];
 
 export default function Chat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(initialMessage);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
@@ -81,7 +81,7 @@ export default function Chat() {
 
   return (
     <div className="h-full flex flex-col">
-      <div className="p-6 flex-grow overflow-auto" ref={containerRef}>
+      <div className="p-6 flex-grow" ref={containerRef}>
         {messages.length <= 0 ? (
           <InitialChatDisplay />
         ) : (

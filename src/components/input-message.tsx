@@ -18,7 +18,7 @@ export function InputMessage({
   isLoading,
 }: InputMessageProps) {
   return (
-    <div className="p-4 flex clear-both">
+    <div className="p-4 flex clear-both sticky bottom-0 bg-background">
       <Input
         type="text"
         aria-label="chat input"
