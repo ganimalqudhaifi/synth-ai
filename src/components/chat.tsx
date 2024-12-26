@@ -15,7 +15,7 @@ const initialMessage: ChatMessage[] = [
 ];
 
 export default function Chat() {
-  const [messages, setMessages] = useState<ChatMessage[]>(initialMessage);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement | null>(null);
