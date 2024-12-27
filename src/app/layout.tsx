@@ -53,7 +53,7 @@ export default function RootLayout({
                   </div>
                 </div>
               </header>
-              <main className="flex flex-1 flex-col p-4 w-full items-center">
+              <main className="flex flex-1 flex-col px-4 w-full items-center">
                 {children}
               </main>
             </SidebarInset>

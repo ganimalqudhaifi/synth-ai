@@ -1,6 +1,6 @@
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Loader2, Send } from "lucide-react";
+import { Textarea } from "./ui/textarea";
 
 type InputMessageProps = {
   input: string;
@@ -18,16 +18,15 @@ export function InputMessage({
   isLoading,
 }: InputMessageProps) {
   return (
-    <div className="p-4 flex clear-both sticky bottom-0 bg-background">
-      <Input
-        type="text"
+    <div className="p-4 flex clear-both sticky bottom-0 bg-background items-end pb-8">
+      <Textarea
         aria-label="chat input"
-        className="rounded-full"
+        className="resize-none"
         required
         placeholder={placeholder}
         value={input}
         onKeyDown={(e) => {
-          if (e.key === "Enter") {
+          if (e.key === "Enter" && !e.shiftKey) {
             sendMessage(input);
             setInput("");
           }
