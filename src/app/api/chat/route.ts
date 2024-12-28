@@ -1,4 +1,4 @@
-import { graph } from "@/lib/openai/chatModel";
+import { graph } from "@/lib/graph";
 import { HumanMessage } from "@langchain/core/messages";
 import { NextRequest, NextResponse } from "next/server";
 
