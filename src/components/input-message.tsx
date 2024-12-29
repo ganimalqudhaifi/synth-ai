@@ -25,6 +25,7 @@ export function InputMessage({
         required
         placeholder={placeholder}
         value={input}
+        disabled={isLoading}
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) {
             sendMessage(input);
@@ -38,7 +39,7 @@ export function InputMessage({
       <Button
         type="submit"
         size="icon"
-        disabled={input.length < 2}
+        disabled={input.length < 2 || isLoading}
         className="ml-4 flex-none rounded-full"
         onClick={() => {
           sendMessage(input);
