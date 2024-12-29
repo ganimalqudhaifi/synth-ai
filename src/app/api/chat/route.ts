@@ -23,12 +23,11 @@ export async function POST(req: NextRequest) {
             for await (const chunk of response) {
               const [data, metadata] = chunk;
               if (
-                metadata.langgraph_node === "conversation" &&
+                (metadata.langgraph_node === "conversation" || metadata.langgraph_node === "generate") &&
                 data.content !== undefined
               ) {
                 controller.enqueue(encoder.encode(data.content));
               }
-              console.log({ chunk });
             }
             controller.close();
           })

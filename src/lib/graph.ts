@@ -1,9 +1,14 @@
 import { END, MemorySaver, START, StateGraph } from "@langchain/langgraph";
 import { GraphAnnotation } from "./annotations";
-import { conversation } from "./nodes/callModel";
+import { conversation } from "./nodes/conversation";
 import { summarizeConversation } from "./nodes/summarizeConversations";
+import { notionRetrieverTool } from "./notionAPI";
+import { generate } from "./nodes/generate";
+import { retrieve } from "./nodes/retrieve";
 
-function shouldContinue(
+export const tools = [notionRetrieverTool]
+
+function shouldSummarize(
   state: typeof GraphAnnotation.State
 ): "summarize_conversation" | typeof END {
   const messages = state.messages;
@@ -14,12 +19,28 @@ function shouldContinue(
   return END;
 }
 
+function shouldRetrieve(state: typeof GraphAnnotation.State): string {
+  const { question } = state;
+  console.log("---DECIDE TO RETRIEVE---");
+
+  if (question) {
+    console.log("---DECISION: RETRIEVE---");
+    return "retrieve";
+  }
+
+  return shouldSummarize(state)
+}
+
 const workflow = new StateGraph(GraphAnnotation)
   .addNode("conversation", conversation)
   .addNode("summarize_conversation", summarizeConversation)
+  .addNode("retrieve", retrieve)
+  .addNode("generate", generate)
 
   .addEdge(START, "conversation")
-  .addConditionalEdges("conversation", shouldContinue)
+  .addConditionalEdges("conversation", shouldRetrieve)
+  .addEdge("retrieve", "generate")
+  .addConditionalEdges("generate", shouldSummarize)
   .addEdge("summarize_conversation", END);
 
 

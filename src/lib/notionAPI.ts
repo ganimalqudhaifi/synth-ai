@@ -33,7 +33,7 @@ const dbDocs = await dbLoader.load();
 
 const vectorStore = await MemoryVectorStore.fromDocuments(dbDocs, textEmbedding);
 
-const retriever = vectorStore.asRetriever();
+export const retriever = vectorStore.asRetriever();
 
 export const notionRetrieverTool = createRetrieverTool(retriever, {
   name: "retrieve_place_to_go_database",
