@@ -1,5 +1,5 @@
 import { GraphAnnotation } from "../annotations";
-import { retriever } from "../notionAPI";
+import { retriever } from "../mongodb";
 
 export const retrieve = async (
   state: typeof GraphAnnotation.State

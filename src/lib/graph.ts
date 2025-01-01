@@ -2,9 +2,9 @@ import { END, MemorySaver, START, StateGraph } from "@langchain/langgraph";
 import { GraphAnnotation } from "./annotations";
 import { conversation } from "./nodes/conversation";
 import { summarizeConversation } from "./nodes/summarizeConversations";
-import { notionRetrieverTool } from "./notionAPI";
 import { generate } from "./nodes/generate";
 import { retrieve } from "./nodes/retrieve";
+import { notionRetrieverTool } from "./tools";
 
 export const tools = [notionRetrieverTool]
 
