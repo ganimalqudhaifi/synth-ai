@@ -7,12 +7,12 @@ import InitialChatDisplay from "./initial-chat-display";
 import { ChatLine } from "./chat-line";
 import { scrollToBottom } from "@/lib/utils";
 
-const initialMessage: ChatMessage[] = [
-  {
-    role: "assistant",
-    content: "Hi there! How can I assist you today? 😊",
-  },
-];
+// const initialMessage: ChatMessage[] = [
+//   {
+//     role: "assistant",
+//     content: "Hi there! How can I assist you today? 😊",
+//   },
+// ];
 
 export default function Chat() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
