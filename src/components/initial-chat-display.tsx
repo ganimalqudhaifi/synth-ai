@@ -4,30 +4,30 @@ import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 const chatSuggestion = [
   {
     id: 1,
-    title: "Discover Jakarta’s Rich History",
+    title: "Art and Aesthetic Escape",
     description:
-      "Visit iconic landmarks like Monas and Kota Tua to explore Jakarta's heritage.",
-    cta: "Find Historical Places",
-    category: "history",
-    emoji: "🏟",
+      "Find me a place in Jakarta that combines art and aesthetic vibes with a cozy atmosphere.",
+    cta: "Explore Art Venues",
+    category: "art, aesthetic",
+    emoji: "🎨",
   },
   {
     id: 2,
-    title: "Taste Jakarta’s Culinary Delights",
+    title: "Spot the Best Sunset Views",
     description:
-      "Enjoy delicious dishes at top restaurants or popular street food spots.",
-    cta: "Explore Dining Options",
-    category: "food",
-    emoji: "🍴",
+      "Locate a scenic spot in Jakarta where you can enjoy stunning sunsets while savoring delicious food.",
+    cta: "Explore Sunset Dining",
+    category: "food, sunset view",
+    emoji: "🌅",
   },
   {
     id: 3,
-    title: "Experience the Vibrant City Life",
+    title: "Unveil the Best Night Destinations",
     description:
-      "Explore malls, family attractions, and exciting city activities.",
-    cta: "Discover Fun Activities",
-    category: "entertainment",
-    emoji: "🏞",
+      "Uncover the best nighttime hangouts in Jakarta, from city lights to cozy cafes and aesthetic spots that shine after dark.",
+    cta: "Explore Night Spots",
+    category: "city light, cafe, aesthetic",
+    emoji: "🌙",
   },
 ];
 
