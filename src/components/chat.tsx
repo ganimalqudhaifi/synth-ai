@@ -82,7 +82,7 @@ export default function Chat() {
     <div className="h-full flex flex-col" ref={containerRef}>
       <div className="p-6 flex-grow">
         {messages.length <= 0 ? (
-          <InitialChatDisplay />
+          <InitialChatDisplay sendMessage={sendQuestion} />
         ) : (
           messages.map(({ content, role }, index) => (
             <ChatLine key={index} role={role} content={content} />

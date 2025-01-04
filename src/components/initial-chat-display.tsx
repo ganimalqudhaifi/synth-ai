@@ -31,7 +31,13 @@ const chatSuggestion = [
   },
 ];
 
-export default function InitialChatDisplay() {
+type InitialChatDisplayProps = {
+  sendMessage: (value: string) => void;
+};
+
+export default function InitialChatDisplay({
+  sendMessage,
+}: InitialChatDisplayProps) {
   return (
     <div className="place-items-center">
       <Avatar>
@@ -44,7 +50,11 @@ export default function InitialChatDisplay() {
       </div>
       <div className="flex gap-x-4 ">
         {chatSuggestion.map((suggestion, index) => (
-          <Card key={index} className="flex-1">
+          <Card
+            key={index}
+            className="flex-1 cursor-pointer"
+            onClick={() => sendMessage(suggestion.description)}
+          >
             <CardHeader>
               <CardTitle>{suggestion.emoji}</CardTitle>
               <CardDescription>{suggestion.description}</CardDescription>
