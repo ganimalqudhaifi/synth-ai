@@ -52,10 +52,9 @@ export default function Chat() {
 
       if (!response.body) return;
 
-      updateMessages({ role: "assistant", content: "" });
-
       const reader = response.body.getReader();
       const decoder = new TextDecoder("utf-8");
+      let isFirstChunkProcessed = false;
 
       while (true) {
         const { done, value } = await reader.read();
@@ -63,6 +62,13 @@ export default function Chat() {
         if (done) break;
 
         const chunk = decoder.decode(value, { stream: true });
+
+        if (chunk) {
+          if (!isFirstChunkProcessed) {
+            updateMessages({ role: "assistant", content: "" });
+            isFirstChunkProcessed = true;
+          }
+        }
         updateLastMessageContent(chunk);
       }
     } catch (error) {
