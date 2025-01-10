@@ -4,30 +4,30 @@ import { Card, CardDescription, CardHeader, CardTitle } from "./ui/card";
 const chatSuggestion = [
   {
     id: 1,
-    title: "Art and Aesthetic Escape",
+    title: "Rooftop Cafes with a View",
     description:
-      "Find me a place in Jakarta that combines art and aesthetic vibes with a cozy atmosphere.",
-    cta: "Explore Art Venues",
-    category: "art, aesthetic",
-    emoji: "🎨",
+      "Discover the best rooftop cafes in Jakarta to enjoy breathtaking city views and a relaxed atmosphere.",
+    cta: "Explore Rooftop Cafes",
+    category: "rooftop, city view, cafe",
+    emoji: "🏙️",
   },
   {
     id: 2,
-    title: "Spot the Best Sunset Views",
+    title: "Cozy WFC-Friendly Spots",
     description:
-      "Locate a scenic spot in Jakarta where you can enjoy stunning sunsets while savoring delicious food.",
-    cta: "Explore Sunset Dining",
-    category: "food, sunset view",
-    emoji: "🌅",
+      "Find a work-from-cafe-friendly place in Jakarta that offers a cozy atmosphere, reliable Wi-Fi, and great coffee.",
+    cta: "Find WFC Spots",
+    category: "WFC, cozy, cafe",
+    emoji: "💻",
   },
   {
     id: 3,
-    title: "Unveil the Best Night Destinations",
+    title: "Top Food Tenants to Try",
     description:
-      "Uncover the best nighttime hangouts in Jakarta, from city lights to cozy cafes and aesthetic spots that shine after dark.",
-    cta: "Explore Night Spots",
-    category: "city light, cafe, aesthetic",
-    emoji: "🌙",
+      "Get recommendations for must-try food tenants in Jakarta, from local favorites to trending culinary gems.",
+    cta: "Explore Food Tenants",
+    category: "food, culinary, Jakarta",
+    emoji: "🍴",
   },
 ];
 
@@ -48,7 +48,7 @@ export default function InitialChatDisplay({
         <h1 className="text-neutral-600">Hi, there 👋</h1>
         <p className="text-xl">How we can help?</p>
       </div>
-      <div className="flex gap-x-4 ">
+      <div className="flex flex-col gap-4 md:flex-row">
         {chatSuggestion.map((suggestion, index) => (
           <Card
             key={index}
