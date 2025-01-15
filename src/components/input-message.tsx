@@ -1,6 +1,9 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { Loader2, Send } from "lucide-react";
 import { Textarea } from "./ui/textarea";
+import { useRef } from "react";
 
 type InputMessageProps = {
   input: string;
@@ -17,19 +20,36 @@ export function InputMessage({
   placeholder,
   isLoading,
 }: InputMessageProps) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+
+  const adjustTextareaHeight = () => {
+    if (textareaRef.current) {
+      console.log("h", textareaRef.current.style.height);
+      textareaRef.current.style.height = "auto";
+      textareaRef.current.style.height = `${
+        textareaRef.current.scrollHeight + 2
+      }px`;
+    }
+  };
+
   return (
     <div className="p-4 flex clear-both sticky bottom-0 bg-background items-end pb-8">
       <Textarea
         aria-label="chat input"
-        className="resize-none"
+        ref={textareaRef}
+        className="resize-none max-h-36"
         required
         placeholder={placeholder}
         value={input}
         disabled={isLoading}
+        onInput={adjustTextareaHeight}
         onKeyDown={(e) => {
           if (e.key === "Enter" && !e.shiftKey) {
             sendMessage(input);
             setInput("");
+            if (textareaRef.current) {
+              textareaRef.current.style.height = "auto";
+            }
           }
         }}
         onChange={(e) => {
@@ -44,6 +64,9 @@ export function InputMessage({
         onClick={() => {
           sendMessage(input);
           setInput("");
+          if (textareaRef.current) {
+            textareaRef.current.style.height = "auto";
+          }
         }}
       >
         {isLoading ? <Loader2 className="animate-spin" /> : <Send />}
