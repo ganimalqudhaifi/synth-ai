@@ -1,4 +1,6 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+"use client";
+
+import { LifeBuoy, Send } from "lucide-react";
 
 import {
   Sidebar,
@@ -11,32 +13,16 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-// Menu items.
 const items = [
   {
-    title: "Home",
+    title: "Support",
     url: "#",
-    icon: Home,
+    icon: LifeBuoy,
   },
   {
-    title: "Inbox",
+    title: "Feedback",
     url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    icon: Send,
   },
 ];
 
